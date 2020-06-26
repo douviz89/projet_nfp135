@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NFP135ZEMOURI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NFP135ZEMOURI_jar</output-path>
+    <root id="archive" name="NFP135ZEMOURI.jar">
+      <element id="module-output" name="NFP135ZEMOURI" />
+    </root>
+  </artifact>
+</component>

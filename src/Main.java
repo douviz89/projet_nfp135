@@ -16,8 +16,25 @@ public class Main {
         System.out.println("###############  Bienvenue au Tour de France 2020  #################");
         System.out.println("####################################################################");
         System.out.println("Saisissez le nombre de coureurs :");
-        nbreCoureurs = sc.nextInt();
-        sc.nextLine();
+//        nbreCoureurs = sc.nextInt();
+//        sc.nextLine();
+
+        for (; ; ) {
+            if (!sc.hasNextInt()) {
+                System.out.println("Entrez un entier positifs seulement ");
+                sc.next();
+                continue;
+            }
+            nbreCoureurs = sc.nextInt();
+            sc.nextLine();
+            if (nbreCoureurs <= 0) {
+                System.out.println("Entrez un entier positifs seulement ");
+//                sc.next();
+                continue;
+            }
+            break;
+        }
+
 
         System.out.println("Vous avez saisi " + nbreCoureurs + " coureurs.");
         course = new String[nbreCoureurs][4];
@@ -45,13 +62,13 @@ public class Main {
         do {
 
             System.out.print("0.) Quitter \n");
-            System.out.print("1.) Afficher les coureurs.\n");
-            System.out.print("2.) Afficher le classement provisoire.\n");
-            System.out.print("3.) Enregistrer une arrivée.\n");
-            System.out.print("4.) Enregistrer un abandon.\n");
-            System.out.print("5.) Enregistrer une disqualification.\n");
-            System.out.print("6.) Enregistrer le temps d'arrivée d'un coureur.\n");
-            System.out.print("7.) Obtenir le temps d'un coureur.\n");
+            System.out.print("1.) Afficher les coureurs\n");
+            System.out.print("2.) Afficher le classement provisoire\n");
+            System.out.print("3.) Enregistrer une arrivée\n");
+            System.out.print("4.) Enregistrer un abandon\n");
+            System.out.print("5.) Enregistrer une disqualification\n");
+            System.out.print("6.) Enregistrer le temps d'arrivée d'un coureur\n");
+            System.out.print("7.) Obtenir le temps d'un coureur\n");
             System.out.print("8.) Obtenir l'écart de temps entre deux coureurs donnés\n");
             System.out.print("\nEntrez votre choix: ");
 
@@ -126,11 +143,10 @@ public class Main {
                 return -1;
             }
         });
-        for(int i = 0; i < course.length; i++){ // display the result
-            for(int j = 0; j < course[i].length; j++)
-            {
+        for (int i = 0; i < course.length; i++) { // display the result
+            for (int j = 0; j < course[i].length; j++) {
                 System.out.print(course[i][j]);
-                if(j < course[i].length - 1) System.out.print(" ");
+                if (j < course[i].length - 1) System.out.print(" ");
             }
             System.out.println();
         }
@@ -160,13 +176,13 @@ public class Main {
         int indice1 = find(course, coureur1);
         int indice2 = find(course, coureur2);
 
-        if (indice1 != -1 && indice1 < course.length && indice2 != -1 && indice2 < course.length ) {
+        if (indice1 != -1 && indice1 < course.length && indice2 != -1 && indice2 < course.length) {
             String temps1 = course[indice1][3];
             String temps2 = course[indice2][3];
             Date date1 = FORMATTER.parse(temps1);
             Date date2 = FORMATTER.parse(temps2);
             long difference = date2.getTime() - date1.getTime();
-            System.out.println("\n l'écart entre les deux coureurs est de " + difference/60000 + " minutes.");
+            System.out.println("\n l'écart entre les deux coureurs est de " + difference / 60000 + " minutes.");
         } else {
             System.out.println("L'un des coureurs n'existe pas !");
         }
@@ -258,8 +274,7 @@ public class Main {
     }
 
     // Fonction qui trouve l'indice d'un element dans un tableau java
-    public static int find(String[][] a, String target)
-    {
+    public static int find(String[][] a, String target) {
         for (int i = 0; i < a.length; i++)
             if (a[i][1].equals(target))
                 return i;
